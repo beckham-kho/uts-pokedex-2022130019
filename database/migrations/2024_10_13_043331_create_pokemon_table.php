@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pokemon', function (Blueprint $table) {
+            $table->id();
             $table->string('name', 255);
             $table->string('species', 100);
             $table->string('primary_type', 50);
