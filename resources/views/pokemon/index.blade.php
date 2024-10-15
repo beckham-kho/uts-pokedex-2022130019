@@ -43,9 +43,11 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="pt-4">
-                                <h1>Pokemon not found</h1>
-                                <p>Add some Pokemon <a href="{{ route('pokemon.create') }}" class="text-decoration-none">here</a></p>
+                            <td colspan="6" class="py-4">
+                                <div class="container text-center border rounded">
+                                    <h1>Pokemon not found</h1>
+                                    <p>Add some Pokemon <a href="{{ route('pokemon.create') }}" class="text-decoration-none">here</a></p>
+                                </div>
                             </td>
                         </tr>
                     @endforelse
