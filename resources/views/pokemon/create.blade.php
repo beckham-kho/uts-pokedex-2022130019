@@ -84,7 +84,7 @@
                     <input name="photo" type="file" @error('photo') is-invalid @enderror accept="image/*" class="form-control" id="photo">
                 </div>
                 <div class="mb-3 col-3">
-                    @error('product_image')
+                    @error('photo')
                         <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

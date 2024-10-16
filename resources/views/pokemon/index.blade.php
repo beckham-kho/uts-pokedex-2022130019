@@ -33,8 +33,8 @@
                             <td>{{ $pokemon->primary_type }}</td>
                             <td>{{ $pokemon->hp + $pokemon->attack + $pokemon->defense }}</td>
                             <td>
-                                <a href="{{ route('pokemon.edit', $pokemon) }}" class="btn btn-sm btn-warning d-inline">Edit</a>
-                                <form action="{{ route('pokemon.destroy', $pokemon) }}" method="POST" class="d-inline">
+                                <a href="{{ route('pokemon.edit', $pokemon->id) }}" class="btn btn-sm btn-warning d-inline">Edit</a>
+                                <form action="{{ route('pokemon.destroy', $pokemon->id) }}" method="POST" class="d-inline">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure want to delete Pokemon {{ $pokemon->name }}')">Delete</button>

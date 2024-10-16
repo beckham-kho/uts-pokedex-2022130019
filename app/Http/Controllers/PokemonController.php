@@ -13,7 +13,7 @@ class PokemonController extends Controller
     {
         //sengaja di except supaya nggak perlu login pas testing
         //JANGAN LUPA HAPUS EXCEPTNYA KALO UDAH BERES (kecuali show)
-        $this->middleware('auth')->except('show', 'index', 'create', 'destroy', 'store', 'update');
+        $this->middleware('auth')->except('show', 'index', 'create', 'destroy', 'store', 'update', 'edit');
     }
 
     /**
@@ -74,7 +74,7 @@ class PokemonController extends Controller
      */
     public function edit(Pokemon $pokemon)
     {
-        //
+        return view('pokemon.edit', compact('pokemon'));
     }
 
     /**
@@ -82,7 +82,29 @@ class PokemonController extends Controller
      */
     public function update(Request $request, Pokemon $pokemon)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'species' => 'required|string|max:100',
+            'primary_type' => 'required|string|max:50',
+            'weight' => 'numeric|max:99999999|',
+            'height' => 'numeric|max:99999999',
+            'hp' => 'numeric|max:9999',
+            'attack' => 'numeric|max:9999',
+            'defense' => 'numeric|max:9999',
+            'is_legendary' => 'boolean',
+            'photo' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ]);
+
+        $pokemon->update($validated);
+
+        if($request->hasFile('photo')) {
+            if($pokemon->photo) {
+                Storage::delete($pokemon->photo);
+            }
+            $filePath = $request->file('photo')->store('images');
+            $pokemon->update(['photo' => $filePath]);
+        }
+        return redirect()->route('pokemon.index')->with('success', 'Pokemon updated successfully!');
     }
 
     /**
