@@ -11,9 +11,7 @@ class PokemonController extends Controller
 {
     public function __construct()
     {
-        //sengaja di except supaya nggak perlu login pas testing
-        //JANGAN LUPA HAPUS EXCEPTNYA KALO UDAH BERES (kecuali show)
-        $this->middleware('auth')->except('show', 'index', 'create', 'destroy', 'store', 'update', 'edit');
+        $this->middleware('auth')->except('show');
     }
 
     /**
@@ -54,7 +52,7 @@ class PokemonController extends Controller
         $pokemon = Pokemon::create($validated);
 
         if($request->hasFile('photo')){
-            $filePath = $request->file('photo')->store('images');
+            $filePath = $request->file('photo')->store('public');
             $pokemon->update(['photo' => $filePath]);
         }
 
@@ -101,7 +99,7 @@ class PokemonController extends Controller
             if($pokemon->photo) {
                 Storage::delete($pokemon->photo);
             }
-            $filePath = $request->file('photo')->store('images');
+            $filePath = $request->file('photo')->store('public');
             $pokemon->update(['photo' => $filePath]);
         }
         return redirect()->route('pokemon.index')->with('success', 'Pokemon updated successfully!');

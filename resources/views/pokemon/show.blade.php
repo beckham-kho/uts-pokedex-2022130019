@@ -4,7 +4,7 @@
     <h1 class="text-black fw-bolder text-center">Pokemon Detail - {{ $pokemon->name }}</h1>
 
     <div class="container">
-        <div class="border border-2 rounded border-black mx-auto my-5" style="--bs-border-opacity: .3; width: 19rem;">
+        <div class="border border-2 shadow-lg rounded border-black mx-auto my-5" style="--bs-border-opacity: .3; width: 19rem;">
             <div class="d-flex inline justify-content-between">
                 <p class="my-0 mt-2 mx-3">{{ Str::padLeft($pokemon->id, 5, '#000') }}</p>
                 <p class="my-0 mt-2 mx-3">{{ $pokemon->is_legendary == 0 ? 'Normal Pokemon' : 'Legendary Pokemon'}}</p>
