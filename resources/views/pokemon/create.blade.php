@@ -75,7 +75,7 @@
                 </div>
             </div>
                 <div class="form-check mb-3">
-                    <input name="is_legendary" class="form-check-input" type="checkbox" value="0" id="is_legendary">
+                    <input name="is_legendary" class="form-check-input" type="checkbox" value="1" id="is_legendary">
                     <label class="form-check-label" for="is_legendary">Is Legendary?</label>
                 </div>
             <div class="row">

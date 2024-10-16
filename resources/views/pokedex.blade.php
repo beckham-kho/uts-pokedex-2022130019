@@ -8,7 +8,7 @@
                 @forelse ($pokemons as $pokemon)
                     <div class="card col-4" style="width: 15.5rem;">
                         <a class="mx-auto" href="{{ route('pokemon.show', $pokemon) }}">
-                            <img src="{{ $pokemon->photo ? Storage::url($pokemon->photo) : 'https://placehold.co/200' }}" class="pt-3" alt="{{ $pokemon->name }}">
+                            <img src="{{ $pokemon->photo ? Storage::url($pokemon->photo) : 'https://placehold.co/200' }}" width="200" class="pt-3" alt="{{ $pokemon->name }}">
                         </a>
                         <div class="card-body">
                             <p class="card-subtitle">{{ Str::padLeft($pokemon->id, 5, '#000') }}</p>
