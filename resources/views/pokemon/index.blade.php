@@ -4,7 +4,17 @@
     <div class="container mx-auto">
         <h1 class="text-black fw-bolder text-center">Pokemon List</h1>
 
-        <a href="{{ route('pokemon.create') }}" class="btn btn-sm btn-success fs-5">Add Pokemon</a>
+        <div class="d-flex inline justify-content-between">
+            <a href="{{ route('pokemon.create') }}" class="btn btn-sm btn-success fs-5">Add Pokemon</a>
+
+            <form action="/pokemon/search" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Pokemon..." name="search">
+                    <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
+        </div>
+
 
         @if(session()->has('success'))
             <div class="alert alert-success mt-4">

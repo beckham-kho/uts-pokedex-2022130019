@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pokemon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class PokemonController extends Controller
 {
@@ -115,5 +116,13 @@ class PokemonController extends Controller
         }
         $pokemon->delete();
         return redirect()->route('pokemon.index')->with('success', 'Pokemon deleted successfully!');
+    }
+
+    //fitur search
+    public function search(Request $request) {
+        $search = $request->search;
+        $pokemons = DB::table('pokemon')->where('name', 'like', "%".$search."%")->paginate(20);
+
+        return view('pokemon.index', compact('pokemons'));
     }
 }
